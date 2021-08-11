@@ -15,7 +15,7 @@
 		
 	<servlet-mapping>
 		<servlet-name>EstoqueController</servlet-name>
-		<url-pattern>/EstoqueController</url-pattern>
+		<url-pattern>/EstoqueController</url-pattern> 
 	</servlet-mapping>
 	
 </web-app>

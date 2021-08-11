@@ -7,22 +7,24 @@ import java.sql.SQLException;
 public class DataSource implements InterfaceDataSource {
 
 	private String url;
-	private String driver;
+	private String driver; 
 	private String usuario;
 	private String senha;
 	
 	
 	
 	public DataSource(String url, String driver, String usuario, String senha) {
-		super();
+		//super();
 		this.url = url;
 		this.driver = driver;
 		this.usuario = usuario;
-		this.senha = senha;
+		this.senha = senha; 
+		
+		
 		
 		try {
 			Class.forName(driver);
-		}catch(ClassNotFoundException e) {
+		}catch(Exception e) {
 			System.out.println("Classe não encontrada");
 			e.printStackTrace();
 		}
@@ -32,8 +34,12 @@ public class DataSource implements InterfaceDataSource {
 	@Override
 	public Connection getConnection() throws SQLException {
 	
-		return DriverManager.getConnection(url, usuario, senha);
+		
+		return DriverManager.getConnection(url, senha, usuario);
+		
 		
 	}
+	
+	
 
 }

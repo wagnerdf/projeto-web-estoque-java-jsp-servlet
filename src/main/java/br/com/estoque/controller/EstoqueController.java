@@ -11,12 +11,15 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class EstoqueControler
+ * Servlet implementation class EstoqueController
  */
-@WebServlet("/EstoqueControler")
+              
+@WebServlet("/EstoqueController")
 public class EstoqueController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	
+	private EstoqueHelper estoqueHelper = new EstoqueHelper();
     /**
      * Default constructor. 
      */
@@ -37,11 +40,14 @@ public class EstoqueController extends HttpServlet {
 
 	private void processarRequisicao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		EstoqueHelper estoqueHelper = new EstoqueHelper(request);
+		
+		
+	
+		estoqueHelper.setRequest(request);
 		InterfaceCommand comando =estoqueHelper.getCommand();
 		String pagina = comando.executete(request, response);
 		request.getRequestDispatcher(pagina).include(request, response);
-		
+	
 		
 	}
 

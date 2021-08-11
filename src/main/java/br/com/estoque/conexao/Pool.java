@@ -13,14 +13,14 @@ public class Pool implements InterfacePool {
 	private Integer numeroMaximoConexoes;
 	private ResourceBundle config;
 	
-	private Pool() {
+	public Pool() {
 		config = ResourceBundle.getBundle("br.com.estoque.conexao.bancodedados");
-		ds = new DataSource(config.getString("url"), 
-							config.getString("driver"),
-							config.getString("usuario"), 
-							config.getString("senha"));
+	
+		ds = new DataSource(config.getString("url"), config.getString("driver"), config.getString("usuario"), config.getString("senha"));
 		
 		numeroMaximoConexoes = Integer.parseInt(config.getString("numeroMaximoConexoes"));
+		conexoesLivres = new ArrayBlockingQueue<Connection>(numeroMaximoConexoes, true);
+		conexoesUtilizadas = new HashMap<String, Connection>();
 		
 	}
 	
